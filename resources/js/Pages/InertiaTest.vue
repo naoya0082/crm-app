@@ -27,5 +27,8 @@ const newContent = ref('')
     content: newContent
 }">ほぞん</Link>
 
-
 </template>
+
+<style>
+body {margin:20px}
+</style>
