@@ -1,5 +1,7 @@
 <script setup>
-
+// defineProps({
+//     blogs: 
+// });
 </script>
 
 <template>
