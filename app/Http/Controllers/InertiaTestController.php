@@ -9,7 +9,9 @@ use Inertia\Inertia;
 class InertiaTestController extends Controller
 {
     public function index() {
-        return Inertia::render('Inertia/Index');
+        return Inertia::render('Inertia/Index', [
+            'blogs' => InertiaTest::all()
+        ]);
     }
 
     public function create() {
@@ -25,11 +27,19 @@ class InertiaTestController extends Controller
     }
 
     public function store(Request $req) {
+        $req->validate([
+            'title' => ['required', 'max:20'],
+            'content' => ['required']
+        ]);
+
         $inertiaTest = new InertiaTest;
         $inertiaTest->title = $req->title;
         $inertiaTest->content = $req->content;
         $inertiaTest->save();
 
-        return to_route('inertia.index');
+        return to_route('inertia.index')
+        ->with([
+            'message' => '登録しました。'
+        ]);
     }
 }
